@@ -4,17 +4,14 @@ import { Bot } from "grammy/mod.ts";
 const bot = new Bot(Deno.env.get("BOT_TOKEN")!); // <-- place your bot token inside this string
 
 // Listen for messages
-bot.command("start", (ctx) => ctx.reply("Welcome! Send me a photo! local"));
-bot.on("message:text", (ctx) =>
-  ctx.reply("That is text and not a photo! local")
-);
-bot.on("message:photo", (ctx) => ctx.reply("Nice photo! Is that you? local"));
+bot.command("start", (ctx) => ctx.reply("Welcome! Send me a photo!"));
+bot.on("message:text", (ctx) => ctx.reply("That is text and not a photo!"));
+bot.on("message:photo", (ctx) => ctx.reply("Nice photo! Is that you?"));
 bot.on("edited_message", (ctx) =>
-  ctx.reply("Ha! Gotcha! You just edited this! local", {
+  ctx.reply("Ha! Gotcha! You just edited this!", {
     reply_to_message_id: ctx.editedMessage.message_id,
   })
 );
 
-// Launch!
 // bot.start();
 export default bot;
