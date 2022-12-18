@@ -5,8 +5,7 @@ const handleUpdate = webhookCallback(bot, "std/http");
 export const handler = {
   async POST(req: Request, _ctx: HandlerContext): Promise<Response> {
     const url = new URL(req.url);
-    console.log(url);
-    console.log(url.pathname.slice("/api/bot".length));
+    console.log(req);
     if (url.pathname.slice("/api/bot/".length) === bot.token) {
       try {
         return await handleUpdate(req);
