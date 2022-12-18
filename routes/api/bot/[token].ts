@@ -1,11 +1,13 @@
 import { webhookCallback } from "grammy/mod.ts";
 import { HandlerContext } from "$fresh/server.ts";
-import bot from "../../bot/bot.ts";
+import bot from "../../../bot/bot.ts";
 const handleUpdate = webhookCallback(bot, "std/http");
 export const handler = {
   async POST(req: Request, _ctx: HandlerContext): Promise<Response> {
     const url = new URL(req.url);
-    if (url.pathname.slice(1) === bot.token) {
+    console.log(url);
+    console.log(url.pathname.slice("/api/bot".length));
+    if (url.pathname.slice("/api/bot/".length) === bot.token) {
       try {
         return await handleUpdate(req);
       } catch (err) {
